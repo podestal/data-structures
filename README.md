@@ -5,5 +5,6 @@ This a repository to reinforce my knowledge in data structures, the programming 
 - O(n^2)    -> Quadratic
 - O(log n)  -> Logarithmic
 - O(2^n)    -> Exponential
+
 The repository is going to be organized with folders for each different data structures:
 - Nodes
