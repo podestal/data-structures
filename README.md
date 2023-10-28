@@ -8,3 +8,4 @@ This a repository to reinforce my knowledge in data structures, the programming 
 
 The repository is going to be organized with folders for each different data structures:
 - Nodes
+- LinkedList
