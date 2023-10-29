@@ -44,6 +44,17 @@ class LinkedList:
         return True
       current_value = current_value.get_next_node()
     return False
+  
+  def index_of(self, value):
+    idx = 0
+    current_node = self.get_head_node()
+    while current_node:
+      if current_node.get_value() == value:
+        return idx
+      idx += 1
+      current_node = current_node.get_next_node()
+    idx = -1
+    return idx
 
   def insert_beginning(self, new_value):
     new_node = Node(new_value)
@@ -100,6 +111,7 @@ my_linkedList.remove_last()
 my_linkedList.remove_last()
 my_linkedList.stringify_list()
 print(my_linkedList.contains(100))
+print(my_linkedList.index_of(70))
 
 
 
