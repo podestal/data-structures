@@ -37,6 +37,14 @@ class LinkedList:
         return current_node
       current_node = current_node.get_next_node()
 
+  def contains(self, value):
+    current_value = self.get_head_node()
+    while current_value:
+      if (current_value.get_value() == value):
+        return True
+      current_value = current_value.get_next_node()
+    return False
+
   def insert_beginning(self, new_value):
     new_node = Node(new_value)
     new_node.set_next_node(self.head_node)
@@ -91,6 +99,7 @@ print(my_linkedList.get_previous(90))
 my_linkedList.remove_last()
 my_linkedList.remove_last()
 my_linkedList.stringify_list()
+print(my_linkedList.contains(100))
 
 
 
