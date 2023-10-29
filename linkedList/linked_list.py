@@ -28,6 +28,15 @@ class LinkedList:
         return current_node
       current_node = next_node
 
+  def get_previous(self, value):
+    if (self.get_head_node().get_value() == value):
+      return None
+    current_node = self.get_head_node()
+    while current_node:
+      if current_node.get_next_node().get_value() == value:
+        return current_node
+      current_node = current_node.get_next_node()
+
   def insert_beginning(self, new_value):
     new_node = Node(new_value)
     new_node.set_next_node(self.head_node)
@@ -41,6 +50,11 @@ class LinkedList:
   def remove_first(self):
     current_node = self.get_head_node()
     self.head_node = current_node.get_next_node()
+
+  def remove_last(self):
+    last_node = self.get_last_node()
+    prev_node = self.get_previous(last_node.get_value())
+    prev_node.set_next_node(None)
 
   def remove_node(self, value_to_remove):
     current_node = self.get_head_node()
@@ -71,7 +85,11 @@ my_linkedList.stringify_list()
 # my_linkedList.remove_node(5)
 my_linkedList.insert_last(999)
 my_linkedList.stringify_list()
-my_linkedList.remove_first()
+# my_linkedList.remove_first()
+my_linkedList.stringify_list()
+print(my_linkedList.get_previous(90))
+my_linkedList.remove_last()
+my_linkedList.remove_last()
 my_linkedList.stringify_list()
 
 
