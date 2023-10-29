@@ -19,38 +19,28 @@ class LinkedList:
   
   def get_head_node(self):
     return self.head_node
-
-  def insert_beginning(self, new_value):
-    new_node = Node(new_value)
-    new_node.set_next_node(self.head_node)
-    self.head_node = new_node
-
+  
   def get_last_node(self):
-
     current_node = self.get_head_node()
     while current_node:
       next_node = current_node.get_next_node()
       if next_node == None:
         return current_node
       current_node = next_node
-      
-    
+
+  def insert_beginning(self, new_value):
+    new_node = Node(new_value)
+    new_node.set_next_node(self.head_node)
+    self.head_node = new_node
 
   def insert_last(self, new_value):
     new_node = Node(new_value)
     last_node = self.get_last_node()
     last_node.set_next_node(new_node)
 
-
-      
-
-  def stringify_list(self):
+  def remove_first(self):
     current_node = self.get_head_node()
-    string_list = ''
-    while(current_node):
-      string_list += str(current_node.get_value()) + '\n'
-      current_node = current_node.get_next_node()
-    print(string_list)
+    self.head_node = current_node.get_next_node()
 
   def remove_node(self, value_to_remove):
     current_node = self.get_head_node()
@@ -64,6 +54,14 @@ class LinkedList:
         else :
             current_node = current_node.get_next_node()
 
+  def stringify_list(self):
+    current_node = self.get_head_node()
+    string_list = ''
+    while(current_node):
+      string_list += str(current_node.get_value()) + '\n'
+      current_node = current_node.get_next_node()
+    print(string_list)
+
 
 my_linkedList = LinkedList(5)
 my_linkedList.insert_beginning(70)
@@ -73,7 +71,8 @@ my_linkedList.stringify_list()
 # my_linkedList.remove_node(5)
 my_linkedList.insert_last(999)
 my_linkedList.stringify_list()
-print(my_linkedList.get_last_node().get_value())
+my_linkedList.remove_first()
+my_linkedList.stringify_list()
 
 
 
