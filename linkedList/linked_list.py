@@ -25,6 +25,25 @@ class LinkedList:
     new_node.set_next_node(self.head_node)
     self.head_node = new_node
 
+  def get_last_node(self):
+
+    current_node = self.get_head_node()
+    while current_node:
+      next_node = current_node.get_next_node()
+      if next_node == None:
+        return current_node
+      current_node = next_node
+      
+    
+
+  def insert_last(self, new_value):
+    new_node = Node(new_value)
+    last_node = self.get_last_node()
+    last_node.set_next_node(new_node)
+
+
+      
+
   def stringify_list(self):
     current_node = self.get_head_node()
     string_list = ''
@@ -51,5 +70,10 @@ my_linkedList.insert_beginning(70)
 my_linkedList.insert_beginning(5675)
 my_linkedList.insert_beginning(90)
 my_linkedList.stringify_list()
-my_linkedList.remove_node(5)
+# my_linkedList.remove_node(5)
+my_linkedList.insert_last(999)
 my_linkedList.stringify_list()
+print(my_linkedList.get_last_node().get_value())
+
+
+
