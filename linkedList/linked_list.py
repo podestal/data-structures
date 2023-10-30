@@ -16,6 +16,7 @@ class Node:
 class LinkedList:
   def __init__(self, value=None):
     self.head_node = Node(value)
+    self.size = 1
   
   def get_head_node(self):
     return self.head_node
@@ -37,13 +38,11 @@ class LinkedList:
         return current_node
       current_node = current_node.get_next_node()
 
+  def get_size(self):
+    print(self.size)
+
   def contains(self, value):
-    current_value = self.get_head_node()
-    while current_value:
-      if (current_value.get_value() == value):
-        return True
-      current_value = current_value.get_next_node()
-    return False
+    return self.index_of(value) != -1
   
   def index_of(self, value):
     idx = 0
@@ -53,27 +52,30 @@ class LinkedList:
         return idx
       idx += 1
       current_node = current_node.get_next_node()
-    idx = -1
-    return idx
+    return -1
 
   def insert_beginning(self, new_value):
     new_node = Node(new_value)
     new_node.set_next_node(self.head_node)
     self.head_node = new_node
+    self.size += 1
 
   def insert_last(self, new_value):
     new_node = Node(new_value)
     last_node = self.get_last_node()
     last_node.set_next_node(new_node)
+    self.size += 1
 
   def remove_first(self):
     current_node = self.get_head_node()
     self.head_node = current_node.get_next_node()
+    self.size -= 1
 
   def remove_last(self):
     last_node = self.get_last_node()
     prev_node = self.get_previous(last_node.get_value())
     prev_node.set_next_node(None)
+    self.size -= 1
 
   def remove_node(self, value_to_remove):
     current_node = self.get_head_node()
@@ -86,6 +88,7 @@ class LinkedList:
             current_node = None
         else :
             current_node = current_node.get_next_node()
+    self.size -= 1
 
   def stringify_list(self):
     current_node = self.get_head_node()
@@ -110,8 +113,11 @@ print(my_linkedList.get_previous(90))
 my_linkedList.remove_last()
 my_linkedList.remove_last()
 my_linkedList.stringify_list()
-print(my_linkedList.contains(100))
+print(my_linkedList.contains(90))
 print(my_linkedList.index_of(70))
+print('///////')
+my_linkedList.stringify_list()
+my_linkedList.get_size()
 
 
 

@@ -9,3 +9,9 @@ This a repository to reinforce my knowledge in data structures, the programming 
 The repository is going to be organized with folders for each different data structures:
 - Nodes
 - LinkedList
+  * Lookup by index    -> O(n)
+  * Lookup by value    -> O(n)
+  * Insert first/last  -> O(1)
+  * Insert middle      -> O(n)
+  * Delete first       -> O(1)
+  * Delete middle/last -> O(n)
