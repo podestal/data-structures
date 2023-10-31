@@ -200,10 +200,53 @@ class LinkedList():
     if self.head_node == None:
       self.head_node = new_node
 
-  
+  def remove_head(self):
+
+    current_head = self.head_node
+
+    if current_head == None:
+      return Node('Could not remove anything since linkedlist is empty')
+    
+    if current_head == self.tail_node:
+      self.head_node = None
+      self.tail_node = None
+      return current_head
+    
+    new_head = current_head.get_next_node()
+
+    if new_head != None:
+      new_head.set_prev_node(None)
+    self.head_node = new_head
+
+  def remove_tail(self):
+    
+    current_tail = self.tail_node
+
+    if current_tail == None:
+      return Node('Could not remove anything since linkedlist is empty')
+    
+    if current_tail == self.head_node:
+      self.head_node = None
+      self.tail_node = None
+      return current_tail
+    
+    new_tail = current_tail.get_prev_node()
+
+    if new_tail != None:
+      new_tail.set_next_node(None)
+    self.tail_node = new_tail
+
+  def remove_by_value(self, value):
+    pass
+
 
 ll = LinkedList()
-# ll.add_to_head(10)
-# ll.add_to_head(20)
-ll.add_to_tail(5)
-ll.add_to_tail(76)
+ll.add_to_head(10)
+ll.add_to_head(20)
+# ll.add_to_tail(5)
+# ll.add_to_tail(76)
+print(ll.head_node.get_value())
+print(ll.tail_node.get_value())
+ll.remove_head()
+print(ll.head_node.get_value())
+print(ll.tail_node.get_value())
