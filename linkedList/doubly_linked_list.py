@@ -258,13 +258,11 @@ class LinkedList():
     #  - list's head_node equals to new_tail
       self.head_node = new_tail
 
-ll = LinkedList()
-ll.add_to_head(10)
-ll.add_to_head(20)
-# ll.add_to_tail(5)
-# ll.add_to_tail(76)
-print(ll.head_node.get_value())
-print(ll.tail_node.get_value())
-ll.remove_head()
-print(ll.head_node.get_value())
-print(ll.tail_node.get_value())
+dll = DoublyLinkedList()
+dll.add_to_head(15)
+dll.add_to_head(30)
+
+
+
+  
+    
