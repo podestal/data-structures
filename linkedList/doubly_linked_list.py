@@ -35,7 +35,6 @@ class DoublyLinkedList:
       self.tail_node = new_head
 
   def add_to_tail(self, new_value):
-    pass
     # create a new_tail node with the new value
     new_tail = Node(new_value)
     # create a current_node var which is equal to list's tail_node
