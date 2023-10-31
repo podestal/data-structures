@@ -71,9 +71,27 @@ class DoublyLinkedList:
       self.remove_tail() 
     # return the removed_head
     return removed_head
-  
+
   def remove_tail(self):
-    pass
+    # create a var for the deleted_tail = self.tail_node
+    deleted_tail = self.tail_node
+    # if deleted_tail == None:
+    if deleted_tail == None:
+      # return None
+      return None
+    # set the list's tail to the prev node of the deleted tail
+    self.tail_node = deleted_tail.get_prev_node()
+    # if new tail is not None
+    if self.tail_node != None:
+      # Set the list's tail node to None
+      self.tail_node.set_next_node(None)
+    # if the removed tail was also the head
+    if deleted_tail == self.head_node:
+      # call remove_head
+      self.remove_head
+    # Return deleted tail
+    return deleted_tail
+
 
 dll = DoublyLinkedList()
 # dll.add_to_tail(2)
@@ -82,11 +100,15 @@ dll = DoublyLinkedList()
 # print(dll.tail_node.get_value())
 dll.add_to_head(15)
 dll.add_to_head(30)
-print(dll.head_node.get_value())
+dll.add_to_head(76)
+dll.add_to_tail(100)
+dll.add_to_tail(145)
+dll.add_to_tail(111)
+print(dll.tail_node.get_value())
 dll.remove_head()
-print(dll.head_node.get_value())
-dll.remove_head()
-print(dll.head_node.get_value())
+print(dll.tail_node.get_value())
+dll.remove_tail()
+print(dll.tail_node.get_value())
 
 
 
