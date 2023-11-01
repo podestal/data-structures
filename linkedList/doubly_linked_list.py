@@ -166,23 +166,18 @@ class Node:
   def get_value(self):
     return self.value
     
-class LinkedList():
-
+class DoublyLinkedList:
   def __init__(self):
     self.head_node = None
     self.tail_node = None
   
-  def add_to_head(self, value):
-
-    new_node = Node(value)
-    current_head = self.head_node
-
-    if current_head != None:
-      current_head.set_prev_node(new_node)
-
-    new_node.set_next_node(current_head)
-    self.head_node = new_node
-
+  def add_to_head(self, new_value):
+    new_head = Node(new_value)
+    current_node = self.head_node
+    if current_node != None:
+      current_node.set_prev_node(new_head)
+      new_head.set_next_node(self.head_node)
+    self.head_node = new_head
     if self.tail_node == None:
       self.tail_node = new_node
 
@@ -240,54 +235,69 @@ class LinkedList():
     pass
 
   def add_to_tail(self, new_value):
-    pass
     # create a new_tail node with the new value
     new_tail = Node(new_value)
-    # create a current_node var which is equal to list's tail_node
-    current_node = self.tail_node
-    # If current_node is not None:
-    if current_node != None:
-    #  - new_tail prev to current_node
-      new_tail.set_prev_node(current_node)
-    #  - current_node next to new_tail
-      current_node.set_next_node(new_tail)
-    # list's tail_node should be equals to new_tail
+    current_tail = self.tail_node
+
+    if current_tail != None:
+      current_tail.set_next_node(new_tail)
+      new_tail.set_prev_node(current_tail)
+
     self.tail_node = new_tail
-    # if list's head_node is None:
+
     if self.head_node == None:
-    #  - list's head_node equals to new_tail
       self.head_node = new_tail
 
   def remove_head(self):
-    # create a var removed_head which is the current head of the list
     removed_head = self.head_node
-    # if current_head == None:
+
     if removed_head == None:
-    #  - return None
       return None
-    # set list's head_node equals to removed_head's next node
+
     self.head_node = removed_head.get_next_node()
-    # If lists head_node is not None
+
     if self.head_node != None:
-    #  - Set list's head node's prev node to None
-        self.head_node.set_prev_node(None)
-    # If removed+_head is equal to list's tail node
+      self.head_node.set_prev_node(None)
+
     if removed_head == self.tail_node:
     #  - use remove_tail
       self.remove_tail() 
     # return the removed_head
     return removed_head
-  
+
   def remove_tail(self):
-    pass
+    # create a var for the deleted_tail = self.tail_node
+    deleted_tail = self.tail_node
+    # if deleted_tail == None:
+    if deleted_tail == None:
+      # return None
+      return None
+    # set the list's tail to the prev node of the deleted tail
+    self.tail_node = deleted_tail.get_prev_node()
+    # if new tail is not None
+    if self.tail_node != None:
+      # Set the list's tail node to None
+      self.tail_node.set_next_node(None)
+    # if the removed tail was also the head
+    if deleted_tail == self.head_node:
+      # call remove_head
+      self.remove_head
+    # Return deleted tail
+    return deleted_tail
+
 
 dll = DoublyLinkedList()
-dll.add_to_tail(2)
-print(dll.tail_node.get_value())
-dll.add_to_tail(6)
-print(dll.tail_node.get_value())
-# dll.add_to_head(15)
-# dll.add_to_head(30)
+# dll.add_to_tail(2)
+# print(dll.tail_node.get_value())
+# dll.add_to_tail(6)
+# print(dll.tail_node.get_value())
+dll.add_to_head(15)
+dll.add_to_head(30)
+print(dll.head_node.get_value())
+dll.remove_head()
+print(dll.head_node.get_value())
+dll.remove_head()
+print(dll.head_node.get_value())
 
 
 
