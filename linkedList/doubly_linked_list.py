@@ -267,11 +267,8 @@ class DoublyLinkedList:
   
   def reverse(self):
     prev_node = self.head_node
-    # print(prev_node.get_value())
     current_node = prev_node.get_next_node()
-    # print(current_node.get_value())
     next_node = current_node.get_next_node()
-    # print(next_node.get_value())
     self.tail_node = prev_node
     prev_node.set_next_node(None)
     prev_node.set_prev_node(current_node)
