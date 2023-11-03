@@ -278,32 +278,57 @@ class DoublyLinkedList:
     if self.tail_node != None:
       # Set the list's tail node to None
       self.tail_node.set_next_node(None)
-    # if the removed tail was also the head
-    if deleted_tail == self.head_node:
-      # call remove_head
-      self.remove_head
-    # Return deleted tail
-    return deleted_tail
 
+    if removed_tail == self.head_node:
+      self.remove_head()
 
-dll = DoublyLinkedList()
-# dll.add_to_tail(2)
-# print(dll.tail_node.get_value())
-# dll.add_to_tail(6)
-# print(dll.tail_node.get_value())
-dll.add_to_head(15)
-dll.add_to_head(30)
-dll.add_to_head(76)
-dll.add_to_tail(100)
-dll.add_to_tail(145)
-dll.add_to_tail(111)
-print(dll.tail_node.get_value())
-dll.remove_head()
-print(dll.tail_node.get_value())
-dll.remove_tail()
-print(dll.tail_node.get_value())
+    return removed_tail.get_value()
 
+  def remove_by_value(self, value_to_remove):
+    node_to_remove = None
+    current_node = self.head_node
 
+    while current_node != None:
+      if current_node.get_value() == value_to_remove:
+        node_to_remove = current_node
+        break
 
-  
-    
+      current_node = current_node.get_next_node()
+
+    if node_to_remove == None:
+      return None
+
+    if node_to_remove == self.head_node:
+      self.remove_head()
+    elif node_to_remove == self.tail_node:
+      self.remove_tail()
+    else:
+      next_node = node_to_remove.get_next_node()
+      prev_node = node_to_remove.get_prev_node()
+      next_node.set_prev_node(prev_node)
+      prev_node.set_next_node(next_node)
+
+    return node_to_remove
+
+  def stringify_list(self):
+    string_list = ""
+    current_node = self.head_node
+    while current_node:
+      if current_node.get_value() != None:
+        string_list += str(current_node.get_value()) + "\n"
+      current_node = current_node.get_next_node()
+    return string_list
+
+# Create your subway line here:
+subway = DoublyLinkedList()
+subway.add_to_head("Times Square")
+subway.add_to_head("Grand Central")
+subway.add_to_head("Central Park")
+subway.add_to_tail("Penn Station")
+subway.add_to_tail("Wall Street")
+subway.add_to_tail("Brooklyn Bridge")
+
+print(subway.head_node.get_next_node().get_value())
+print(subway.head_node.get_next_node().get_next_node().get_value())
+print(subway.head_node.get_next_node().get_next_node().get_next_node().get_value())
+print(subway.head_node.get_next_node().get_next_node().get_next_node().get_next_node().get_value())
