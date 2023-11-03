@@ -303,6 +303,17 @@ class DoublyLinkedList:
       current_node = current_node.get_prev_node()
       position -= 1
     return current_node.get_value()
+  
+  def get_middle(self):
+    head = self.head_node
+    tail = self.tail_node
+    while head != None:
+      if head == tail:
+        return 'The middle has just one node ' + str(head.get_value())
+      elif head.get_prev_node() == tail and tail.get_next_node() == head:
+        return 'The middle has two nodes ' + str(head.get_value()) + ' and ' + str(tail.get_value())
+      head = head.get_next_node()
+      tail = tail.get_prev_node()
 
 
 # Create your subway line here:
@@ -321,4 +332,5 @@ subway.add_to_tail("Brooklyn Bridge")
 
 print(subway.stringify_list())
 print('///////////////')
-print(subway.kth_node_from_end(1))
+print(subway.get_middle())
+
