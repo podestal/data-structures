@@ -318,6 +318,31 @@ class DoublyLinkedList:
         string_list += str(current_node.get_value()) + "\n"
       current_node = current_node.get_next_node()
     return string_list
+  
+  def reverse(self):
+    prev_node = self.head_node
+    # print(prev_node.get_value())
+    current_node = prev_node.get_next_node()
+    # print(current_node.get_value())
+    next_node = current_node.get_next_node()
+    # print(next_node.get_value())
+    self.tail_node = prev_node
+    prev_node.set_next_node(None)
+    prev_node.set_prev_node(current_node)
+    while current_node != None:
+      print(current_node.get_value())
+      if next_node == None:
+        self.head_node = current_node
+        current_node.set_next_node(prev_node)
+        current_node.set_prev_node(None)
+      else:
+        current_node.set_next_node(prev_node)
+        current_node.set_prev_node(next_node)
+      prev_node = current_node
+      current_node = next_node
+      if current_node != None:
+        next_node = current_node.get_next_node()
+
 
 # Create your subway line here:
 subway = DoublyLinkedList()
@@ -328,7 +353,13 @@ subway.add_to_tail("Penn Station")
 subway.add_to_tail("Wall Street")
 subway.add_to_tail("Brooklyn Bridge")
 
-print(subway.head_node.get_next_node().get_value())
-print(subway.head_node.get_next_node().get_next_node().get_value())
-print(subway.head_node.get_next_node().get_next_node().get_next_node().get_value())
-print(subway.head_node.get_next_node().get_next_node().get_next_node().get_next_node().get_value())
+# print(subway.head_node.get_next_node().get_value())
+# print(subway.head_node.get_next_node().get_next_node().get_value())
+# print(subway.head_node.get_next_node().get_next_node().get_next_node().get_value())
+# print(subway.head_node.get_next_node().get_next_node().get_next_node().get_next_node().get_value())
+
+print(subway.stringify_list())
+print('///////////////')
+subway.reverse()
+print('///////////////')
+print(subway.stringify_list())
