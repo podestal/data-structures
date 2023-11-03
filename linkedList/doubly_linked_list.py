@@ -286,6 +286,24 @@ class DoublyLinkedList:
       if current_node != None:
         next_node = current_node.get_next_node()
 
+  def size(self):
+    counter = 0
+    current_node = self.head_node
+    while current_node != None:
+      counter += 1
+      current_node = current_node.get_next_node()
+    return counter
+
+  def kth_node_from_end(self, position):
+
+    current_node = self.tail_node
+    if (position > self.size()):
+      return 'Position given greater than size of list'
+    while position != 0:
+      current_node = current_node.get_prev_node()
+      position -= 1
+    return current_node.get_value()
+
 
 # Create your subway line here:
 subway = DoublyLinkedList()
@@ -303,6 +321,4 @@ subway.add_to_tail("Brooklyn Bridge")
 
 print(subway.stringify_list())
 print('///////////////')
-subway.reverse()
-print('///////////////')
-print(subway.stringify_list())
+print(subway.kth_node_from_end(1))
