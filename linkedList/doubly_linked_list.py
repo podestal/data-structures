@@ -438,14 +438,26 @@ class LinkedList:
       next_node.set_prev_node(prev_node)
     
     return current_node
+  
+  def stringnify(self):
+
+    current_node = self.head_node
+    if current_node == None:
+      return ''
+    stringnify_list = ''
+    while current_node != None:
+      stringnify_list += str(current_node.get_value()) + '\n'
+      current_node = current_node.get_next_node()
+    
+    return stringnify_list
 
     
 l = LinkedList()
 # print(l.head_node())
 l.add_to_head(6)
 l.add_to_head(10)
-# l.add_to_tail(111)
-# l.add_to_tail(22)
+l.add_to_tail(111)
+l.add_to_tail(22)
 # print(l.head_node.get_value())
 # print(l.head_node.get_next_node().get_value())
 # print(l.head_node.get_next_node().get_next_node().get_value())
@@ -453,3 +465,4 @@ l.add_to_head(10)
 # print(l.remove_by_value(6).get_value())
 # print(l.head_node.get_value())
 # print(l.tail_node.get_value())
+print(l.stringnify())
