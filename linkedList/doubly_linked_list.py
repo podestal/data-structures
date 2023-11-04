@@ -165,7 +165,8 @@ class Node:
   
   def get_value(self):
     return self.value
-    
+
+
 class DoublyLinkedList:
   def __init__(self):
     self.head_node = None
@@ -173,77 +174,25 @@ class DoublyLinkedList:
   
   def add_to_head(self, new_value):
     new_head = Node(new_value)
-    current_node = self.head_node
-    if current_node != None:
-      current_node.set_prev_node(new_head)
-      new_head.set_next_node(self.head_node)
-    self.head_node = new_head
-    if self.tail_node == None:
-      self.tail_node = new_node
-
-  def add_to_tail(self, value):
-
-    new_node = Node(value)
-    current_tail = self.tail_node
-
-    if current_tail != None:
-      current_tail.set_next_node(new_node)
-
-    new_node.set_prev_node(current_tail)
-    self.tail_node = new_node
-
-    if self.head_node == None:
-      self.head_node = new_node
-
-  def remove_head(self):
-
     current_head = self.head_node
 
-    if current_head == None:
-      return Node('Could not remove anything since linkedlist is empty')
-    
-    if current_head == self.tail_node:
-      self.head_node = None
-      self.tail_node = None
-      return current_head
-    
-    new_head = current_head.get_next_node()
+    if current_head != None:
+      current_head.set_prev_node(new_head)
+      new_head.set_next_node(current_head)
 
-    if new_head != None:
-      new_head.set_prev_node(None)
     self.head_node = new_head
 
-  def remove_tail(self):
-    
-    current_tail = self.tail_node
-
-    if current_tail == None:
-      return Node('Could not remove anything since linkedlist is empty')
-    
-    if current_tail == self.head_node:
-      self.head_node = None
-      self.tail_node = None
-      return current_tail
-    
-    new_tail = current_tail.get_prev_node()
-
-    if new_tail != None:
-      new_tail.set_next_node(None)
-    self.tail_node = new_tail
-
-  def remove_by_value(self, value):
-    pass
+    if self.tail_node == None:
+      self.tail_node = new_head
 
   def add_to_tail(self, new_value):
-    # create a new_tail node with the new value
     new_tail = Node(new_value)
     current_tail = self.tail_node
-
     if current_tail != None:
-      current_tail.set_next_node(new_tail)
-      new_tail.set_prev_node(current_tail)
+      current_tail.set_next_node(new_node)
+      new_node.set_prev_node(current_tail)
 
-    self.tail_node = new_tail
+    self.tail_node = new_node
 
     if self.head_node == None:
       self.head_node = new_tail
@@ -321,11 +270,8 @@ class DoublyLinkedList:
   
   def reverse(self):
     prev_node = self.head_node
-    # print(prev_node.get_value())
     current_node = prev_node.get_next_node()
-    # print(current_node.get_value())
     next_node = current_node.get_next_node()
-    # print(next_node.get_value())
     self.tail_node = prev_node
     prev_node.set_next_node(None)
     prev_node.set_prev_node(current_node)
@@ -378,4 +324,5 @@ subway.add_to_tail("Brooklyn Bridge")
 
 print(subway.stringify_list())
 print('///////////////')
-print(subway.kth_node_from_end(1))
+print(subway.get_middle())
+
