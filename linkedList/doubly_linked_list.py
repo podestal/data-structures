@@ -380,15 +380,12 @@ class LinkedList:
     removed_head = self.head_node
     if removed_head == None:
       return None
-    
     new_head = removed_head.get_next_node()
 
     if new_head == None:
       self.head_node = None
       self.tail_node = None
       return None
-    
-    
     self.head_node = new_head
     removed_head.set_next_node(None)
     return removed_head
@@ -396,45 +393,63 @@ class LinkedList:
   def remove_tail(self):
 
     removed_tail = self.tail_node
-
     if removed_tail == None:
       return None
-    
     new_tail = removed_tail.get_prev_node()
 
     if new_tail == None:
       self.head_node = None
       self.tail_node = None
       return None
-  
-
     self.tail_node = new_tail
     removed_tail.set_prev_node(None)
     return removed_tail
+  
+  def remove_by_value(self, value):
+
+    current_node = self.head_node
     
+    if current_node == None:
+      return None
+    
+    next_node = current_node.get_next_node()
 
+    if next_node == None:
+      self.head_node = None
+      self.tail_node = None
+      return current_node
+    
+    while current_node != None:
+      if current_node.get_value() == value:
+        break
+      current_node = next_node
+      next_node = current_node.get_next_node()
 
+    prev_node = current_node.get_prev_node()
 
-
-
-
-
+    if current_node == self.head_node:
+      next_node.set_prev_node(None)
+      self.head_node = next_node
+    elif current_node == self.tail_node:
+      prev_node.set_next_node(None)
+      self.tail_node = prev_node
+    else:
+      prev_node.set_next_node(next_node)
+      next_node.set_prev_node(prev_node)
+    
+    return current_node
 
     
-    
-
-
 l = LinkedList()
 # print(l.head_node())
 l.add_to_head(6)
 l.add_to_head(10)
-l.add_to_tail(111)
-l.add_to_tail(22)
+# l.add_to_tail(111)
+# l.add_to_tail(22)
 # print(l.head_node.get_value())
 # print(l.head_node.get_next_node().get_value())
 # print(l.head_node.get_next_node().get_next_node().get_value())
-print(l.head_node.get_value())
-l.remove_head()
-l.remove_head()
-print(l.head_node.get_value())
-print(l.tail_node.get_value())
+# print(l.head_node.get_value())
+# print(l.remove_by_value(6).get_value())
+# print(l.head_node.get_value())
+# print(l.tail_node.get_value())
