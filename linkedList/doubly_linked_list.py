@@ -450,6 +450,31 @@ class LinkedList:
       current_node = current_node.get_next_node()
     
     return stringnify_list
+  
+  def reverse(self):
+    prev_node = self.head_node
+
+    if (prev_node == None):
+      return None
+
+    current_node = prev_node.get_next_node()
+
+    if current_node == None:
+      return None
+    
+    prev_node.set_next_node(None)
+    prev_node.set_prev_node(current_node)
+    self.tail_node = prev_node
+
+    while current_node != None:
+      next_node = current_node.get_next_node()
+      if next_node == None:
+        self.head_node = current_node
+      current_node.set_next_node(prev_node)
+      current_node.set_prev_node(next_node)
+      prev_node = current_node
+      current_node = next_node
+
 
     
 l = LinkedList()
@@ -464,5 +489,8 @@ l.add_to_tail(22)
 # print(l.head_node.get_value())
 # print(l.remove_by_value(6).get_value())
 # print(l.head_node.get_value())
+# print(l.tail_node.get_value())
+print(l.stringnify())
+l.reverse()
 # print(l.tail_node.get_value())
 print(l.stringnify())
