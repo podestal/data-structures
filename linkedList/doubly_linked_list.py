@@ -166,3 +166,44 @@ class Node:
   def get_value(self):
     return self.value
     
+class LinkedList():
+
+  def __init__(self):
+    self.head_node = None
+    self.tail_node = None
+  
+  def add_to_head(self, value):
+
+    new_node = Node(value)
+    current_head = self.head_node
+
+    if current_head != None:
+      current_head.set_prev_node(new_node)
+
+    new_node.set_next_node(current_head)
+    self.head_node = new_node
+
+    if self.tail_node == None:
+      self.tail_node = new_node
+
+  def add_to_tail(self, value):
+
+    new_node = Node(value)
+    current_tail = self.tail_node
+
+    if current_tail != None:
+      current_tail.set_next_node(new_node)
+
+    new_node.set_prev_node(current_tail)
+    self.tail_node = new_node
+
+    if self.head_node == None:
+      self.head_node = new_node
+
+  
+
+ll = LinkedList()
+# ll.add_to_head(10)
+# ll.add_to_head(20)
+ll.add_to_tail(5)
+ll.add_to_tail(76)
