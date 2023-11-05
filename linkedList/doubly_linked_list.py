@@ -189,13 +189,13 @@ class DoublyLinkedList:
     new_tail = Node(new_value)
     current_tail = self.tail_node
     if current_tail != None:
-      current_tail.set_next_node(new_node)
-      new_node.set_prev_node(current_tail)
+      current_tail.set_next_node(new_tail)
+      new_tail.set_prev_node(current_tail)
 
-    self.tail_node = new_node
+    self.tail_node = new_tail
 
     if self.head_node == None:
-      self.head_node == new_node
+      self.head_node == new_tail
 
   def remove_head(self):
 
@@ -269,7 +269,7 @@ class DoublyLinkedList:
     return current_node
 
     
-l = LinkedList()
+l = DoublyLinkedList()
 # print(l.head_node())
 l.add_to_head(6)
 l.add_to_head(10)
