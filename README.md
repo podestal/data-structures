@@ -15,3 +15,9 @@ The repository is going to be organized with folders for each different data str
   * Insert middle      -> O(n)
   * Delete first       -> O(1)
   * Delete middle/last -> O(n)
+- Queues
+  * enqueue            -> O(1)
+  * dequeue            -> O(1)
+  * peek               -> O(1)
+  * isEmpty            -> O(1)
+  * isFull             -> O(1)
