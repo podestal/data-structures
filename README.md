@@ -21,3 +21,8 @@ The repository is going to be organized with folders for each different data str
   * peek               -> O(1)
   * isEmpty            -> O(1)
   * isFull             -> O(1)
+- Stacks
+  * push               -> O(1)
+  * pop                -> O(1)
+  * peek               -> O(1)
+  * isEmpty            -> O(1)
