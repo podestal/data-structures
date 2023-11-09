@@ -21,10 +21,11 @@ class Node:
   
 class Stack:
   
-  def __init__(self, limit=1000):
+  def __init__(self, name):
     self.top_item = None
     self.size = 0
-    self.limit = limit
+    self.limit = 1000
+    self.name = name
   
   def push(self, value):
     if self.has_space():
@@ -55,3 +56,7 @@ class Stack:
 
   def is_empty(self):
     return self.size == 0
+  
+  def get_name(self):
+    return self.name
+  
