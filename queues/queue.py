@@ -116,6 +116,15 @@ class Queue:
     self.head = None
     self.tail = None
     self.size = 0
+  
+  def peek(self):
+    return self.head.get_value()
+  
+  def get_size(self):
+    return self.size
+  
+  def is_empty(self):
+    return self.get_size() == 0
 
   def enqueue(self, value):
     new_element = Node(value)
@@ -127,12 +136,39 @@ class Queue:
     self.tail = new_element
     self.size += 1
   
-  
+  def dequeue(self):
+    if self.get_size() == 0:
+      return 'The queue is empty'
+    item_removed = self.head
+
+    if self.get_size() == 1:
+      self.head = None
+      self.tail = None
+    else:
+      new_head = item_removed.get_next_node()
+      item_removed.set_next_node(None)
+      self.head = new_head
+
+    self.size -= 1
+    return item_removed.get_value()
+
     
 q = Queue()
-print(q.head)
 q.enqueue(5)
 q.enqueue(53)
-q.enqueue(15)
-q.enqueue(56)
-print(q.head.get_next_node().get_next_node().get_next_node().get_value())
+print(q.is_empty())
+print('size', q.get_size())
+# q.enqueue(15)
+# q.enqueue(56)
+# print('head', q.peek())
+# print(q.head.get_value())
+# print(q.tail.get_value())
+# print(q.head.get_next_node().get_next_node().get_next_node().get_value())
+print(q.dequeue())
+print(q.dequeue())
+# print(q.head)
+# print(q.tail)
+# print(q.head.get_value())
+# print(q.tail.get_value())
+print(q.is_empty())
+print('size', q.get_size())
