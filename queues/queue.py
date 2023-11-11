@@ -72,3 +72,41 @@ class Queue:
     
   def is_empty(self):
     return self.size == 0
+  
+  def reverse(self):
+    # verify if the queue is not empty
+    if self.is_empty():
+      return 'The Queue is empty'
+    # verify if list has just one element
+    if self.get_size() == 1:
+      return self.head
+    q_list = []
+    counter = self.get_size()
+
+    while counter > 0:
+      q_list.append(self.dequeue())
+      counter -= 1
+    
+    for i in range(0, len(q_list)):
+      value = q_list.pop()
+      self.enqueue(value)
+
+
+
+    
+
+my_q = Queue()
+my_q.enqueue(5)
+my_q.enqueue(10)
+my_q.enqueue(15)
+my_q.enqueue(40)
+
+# 5 -> 10 -> 15 -> 20
+
+# 20 -> 15 -> 10 -> 5
+print('head before', my_q.head.get_value())
+# print(my_q.peek())
+my_q.reverse()
+# print(my_q.head.get_value())
+print('head after', my_q.head.get_value())
+
