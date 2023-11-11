@@ -151,24 +151,61 @@ class Queue:
 
     self.size -= 1
     return item_removed.get_value()
+  
+  def reverse(self):
+    if self.is_empty():
+      return 'Queue is empty'
+    
+    counter = self.get_size()
+    if counter == 1:
+      return self.head
+    
+    q_list = []
+
+    while counter > 0:
+      q_list.append(self.dequeue())
+      counter -= 1
+    
+    for i in range(0, len(q_list)):
+      self.enqueue(q_list.pop())
+
+  def stringnify(self):
+    str_queue = ''
+    current = self.head
+
+    while current:
+      str_queue += str(current.get_value()) + ' '
+      current = current.get_next_node()
+
+    return str_queue
+    
+    
 
     
 q = Queue()
 q.enqueue(5)
 q.enqueue(53)
-print(q.is_empty())
-print('size', q.get_size())
-# q.enqueue(15)
-# q.enqueue(56)
+q.enqueue(3)
+# print(q.is_empty())
+# print('size', q.get_size())
+q.enqueue(15)
+q.enqueue(56)
+print(q.stringnify())
 # print('head', q.peek())
 # print(q.head.get_value())
 # print(q.tail.get_value())
 # print(q.head.get_next_node().get_next_node().get_next_node().get_value())
-print(q.dequeue())
-print(q.dequeue())
+# print(q.dequeue())
+# print(q.dequeue())
 # print(q.head)
 # print(q.tail)
 # print(q.head.get_value())
 # print(q.tail.get_value())
-print(q.is_empty())
-print('size', q.get_size())
+# print(q.is_empty())
+# print('size', q.get_size())
+# print('head', q.peek())
+q.reverse()
+print(q.stringnify())
+# print('size', q.get_size())
+# print('head', q.peek())
+# print(q.stringnify())
